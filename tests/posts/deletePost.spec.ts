@@ -1,12 +1,13 @@
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
+import { deletePost } from "../../utils/apiHelper";
+import { expectStatus, expectEmptyObject } from "../../utils/assertions";
 
 test.describe("DELETE /posts/:id - Delete Post", () => {
   test("TC01: should delete post successfully", async ({ request }) => {
-    const res = await request.delete("/posts/1");
+    const res = await deletePost(request, 1);
+    await expectStatus(res, 200);
 
-    expect(res.status()).toBe(200);
-
-    const text = await res.text();
-    expect(200).toBe(res.status());
+    const body = await res.json();
+    expectEmptyObject(body);
   });
 });

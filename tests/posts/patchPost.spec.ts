@@ -1,34 +1,28 @@
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
+import { patchPost } from "../../utils/apiHelper";
+import { expectStatus, expectValue } from "../../utils/assertions";
 
 test.describe("PATCH /posts/:id - Partially Update Post", () => {
   test("TC01: should partially update post title", async ({ request }) => {
-    const res = await request.patch("/posts/1", {
-      data: {
-        title: "Partially Updated Title",
-      },
-      headers: {
-        "Content-Type": "application/json",
-      },
+    const res = await patchPost(request, 1, {
+      title: "Partially Updated Title",
     });
 
-    expect(res.status()).toBe(200);
+    await expectStatus(res, 200);
+
     const body = await res.json();
-    expect(body.title).toBe("Partially Updated Title");
-    expect(body.id).toBe(1);
+    expectValue(body.title, "Partially Updated Title");
+    expectValue(body.id, 1);
   });
 
   test("TC02: should partially update post body", async ({ request }) => {
-    const res = await request.patch("/posts/1", {
-      data: {
-        body: "Only Body Changed",
-      },
-      headers: {
-        "Content-Type": "application/json",
-      },
+    const res = await patchPost(request, 1, {
+      body: "Only Body Changed",
     });
 
-    expect(res.status()).toBe(200);
+    await expectStatus(res, 200);
+
     const body = await res.json();
-    expect(body.body).toBe("Only Body Changed");
+    expectValue(body.body, "Only Body Changed");
   });
 });

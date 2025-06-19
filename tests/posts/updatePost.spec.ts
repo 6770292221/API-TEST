@@ -1,23 +1,21 @@
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
+import { updatePost } from "../../utils/apiHelper";
+import { expectStatus, expectValue } from "../../utils/assertions";
 
 test.describe("PUT /posts/:id - Update Post", () => {
   test("TC01: should update post successfully", async ({ request }) => {
-    const res = await request.put("/posts/1", {
-      data: {
-        id: 1,
-        title: "Updated Title",
-        body: "Updated Body",
-        userId: 1,
-      },
-      headers: {
-        "Content-Type": "application/json",
-      },
+    const res = await updatePost(request, 1, {
+      id: 1,
+      title: "Updated Title",
+      body: "Updated Body",
+      userId: 1,
     });
 
-    expect(res.status()).toBe(200);
+    await expectStatus(res, 200);
+
     const body = await res.json();
-    expect(body.title).toBe("Updated Title");
-    expect(body.body).toBe("Updated Body");
-    expect(body.id).toBe(1);
+    expectValue(body.title, "Updated Title");
+    expectValue(body.body, "Updated Body");
+    expectValue(body.id, 1);
   });
 });

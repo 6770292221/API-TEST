@@ -1,33 +1,33 @@
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
+import { createPost } from "../../utils/apiHelper";
+import {
+  expectStatus,
+  expectHasProperty,
+  expectValue,
+} from "../../utils/assertions";
 
 test.describe("POST /posts - Create Post API", () => {
   test("TC01: should create a post with valid data", async ({ request }) => {
-    const res = await request.post("/posts", {
-      data: {
-        title: "My First Post",
-        body: "Hello world from Playwright!",
-        userId: 1,
-      },
-      headers: { "Content-Type": "application/json" },
+    const res = await createPost(request, {
+      title: "My First Post",
+      body: "Hello world from Playwright!",
+      userId: 1,
     });
 
-    expect(res.status()).toBe(201);
+    await expectStatus(res, 201);
     const body = await res.json();
-    expect(body).toHaveProperty("id");
-    expect(body.title).toBe("My First Post");
+    expectHasProperty(body, "id");
+    expectValue(body.title, "My First Post");
   });
 
   test("TC03: should fail when userId is not a number", async ({ request }) => {
-    const res = await request.post("/posts", {
-      data: {
-        title: "Invalid UserId",
-        body: "This should fail",
-        userId: "abc",
-      },
-      headers: { "Content-Type": "application/json" },
+    const res = await createPost(request, {
+      title: "Invalid UserId",
+      body: "This should fail",
+      userId: "abc",
     });
 
-    expect(400).toContain(res.status());
+    await expectStatus(res, 400);
   });
 
   test("TC04: should fail when sending empty body", async ({ request }) => {
@@ -35,6 +35,6 @@ test.describe("POST /posts - Create Post API", () => {
       headers: { "Content-Type": "application/json" },
     });
 
-    expect(400).toContain(res.status());
+    await expectStatus(res, 400);
   });
 });
