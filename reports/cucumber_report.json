@@ -1,0 +1,216 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "get-all-posts;tc01:-should-return-200-ok",
+        "keyword": "Scenario",
+        "line": 3,
+        "name": "TC01: should return 200 OK",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 4,
+            "name": "I send a GET request to \"/posts\"",
+            "match": {
+              "location": "tests/steps/getAllPosts.steps.ts:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 582262000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 5,
+            "name": "the response status should be 200",
+            "match": {
+              "location": "tests/steps/common.steps.ts:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2116166
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@smoke",
+            "line": 2
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "get-all-posts",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Get All Posts",
+    "tags": [],
+    "uri": "tests/posts/getAllPosts.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "partially-update-a-post;tc01:-should-partially-update-post-title",
+        "keyword": "Scenario",
+        "line": 4,
+        "name": "TC01: should partially update post title",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "Create Post",
+            "match": {
+              "location": "tests/steps/patchPost.steps.ts:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 179249
+            }
+          },
+          {
+            "arguments": [
+              {
+                "content": "{\n  \"title\": \"Partially Updated Title\"\n}",
+                "line": 7
+              }
+            ],
+            "keyword": "When ",
+            "line": 6,
+            "name": "I send a PATCH request to \"/posts/1\" with body:",
+            "match": {
+              "location": "tests/steps/patchPost.steps.ts:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 742918208
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 12,
+            "name": "the response status should be 200",
+            "match": {
+              "location": "tests/steps/common.steps.ts:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 756707
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 13,
+            "name": "the response body \"title\" should be \"Partially Updated Title\"",
+            "match": {
+              "location": "tests/steps/common.steps.ts:14"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 434792
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 14,
+            "name": "the response body \"id\" should be 1",
+            "match": {
+              "location": "tests/steps/common.steps.ts:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 509624
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@smoke",
+            "line": 3
+          },
+          {
+            "name": "@regression",
+            "line": 3
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "partially-update-a-post;tc02:-should-partially-update-post-body",
+        "keyword": "Scenario",
+        "line": 17,
+        "name": "TC02: should partially update post body",
+        "steps": [
+          {
+            "arguments": [
+              {
+                "content": "{\n  \"body\": \"Only Body Changed\"\n}",
+                "line": 19
+              }
+            ],
+            "keyword": "When ",
+            "line": 18,
+            "name": "I send a PATCH request to \"/posts/1\" with body:",
+            "match": {
+              "location": "tests/steps/patchPost.steps.ts:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 813490249
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 24,
+            "name": "the response status should be 200",
+            "match": {
+              "location": "tests/steps/common.steps.ts:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1014541
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 25,
+            "name": "the response body \"body\" should be \"Only Body Changed\"",
+            "match": {
+              "location": "tests/steps/common.steps.ts:14"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 519082
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@smoke",
+            "line": 16
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "partially-update-a-post",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Partially Update a Post",
+    "tags": [],
+    "uri": "tests/posts/patchPost.feature"
+  }
+]

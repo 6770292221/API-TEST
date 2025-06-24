@@ -1,0 +1,129 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "get-all-posts;tc01:-should-return-200-ok",
+        "keyword": "Scenario",
+        "line": 3,
+        "name": "TC01: should return 200 OK",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 4,
+            "name": "I send a GET request to \"/posts\"",
+            "match": {
+              "location": "tests/steps/getAllPosts.steps.ts:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 387940041
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 5,
+            "name": "the response status should be 200",
+            "match": {
+              "location": "tests/steps/common.steps.ts:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1885957
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@smoke",
+            "line": 2
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "get-all-posts;tc02:-should-return-an-array-of-posts",
+        "keyword": "Scenario",
+        "line": 7,
+        "name": "TC02: should return an array of posts",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 8,
+            "name": "I send a GET request to \"/posts\"",
+            "match": {
+              "location": "tests/steps/getAllPosts.steps.ts:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 282845084
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 9,
+            "name": "the response body should be an array",
+            "match": {
+              "location": "tests/steps/getAllPosts.steps.ts:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1078250
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "get-all-posts;tc03:-should-return-exactly-100-items",
+        "keyword": "Scenario",
+        "line": 11,
+        "name": "TC03: should return exactly 100 items",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 12,
+            "name": "I send a GET request to \"/posts\"",
+            "match": {
+              "location": "tests/steps/getAllPosts.steps.ts:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 275664041
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 13,
+            "name": "the response body should contain 100 items",
+            "match": {
+              "location": "tests/steps/getAllPosts.steps.ts:23"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 496583
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "get-all-posts",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Get All Posts",
+    "tags": [],
+    "uri": "tests/posts/getAllPosts.feature"
+  }
+]

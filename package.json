@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:bdd": "ENV=dev cucumber-js \"tests/**/*.feature\" --require-module ts-node/register --require tests/support/env.ts --require \"tests/steps/**/*.ts\" --format json:reports/cucumber_report.json ",
-    "test:createPost": "ENV=dev cucumber-js tests/posts/createPost.feature --require-module ts-node/register --require tests/support/env.ts --require tests/steps/**/*.ts --format json:reports/createPost.json",
+    "test:bdd": "cross-env cucumber-js \"tests/**/*.feature\" --require-module ts-node/register --require tests/support/env.ts --require \"tests/steps/**/*.ts\" --format json:reports/cucumber_report.json ",
+    "test:createPost": "cross-env cucumber-js tests/posts/createPost.feature --require-module ts-node/register --require tests/support/env.ts --require tests/steps/**/*.ts --format json:reports/createPost.json",
     "test:getAllPosts": "cross-env cucumber-js tests/posts/getAllPosts.feature --require-module ts-node/register --require tests/support/env.ts --require tests/steps/**/*.ts --format json:reports/getAllPosts.json",
-    "test:smoke": "ENV=dev cucumber-js \"tests/**/*.feature\" --require-module ts-node/register --require tests/support/env.ts --require \"tests/steps/**/*.ts\" --format json:reports/cucumber_report.json --tags \"@smoke\"",
-    "test:regression": "ENV=dev cucumber-js \"tests/**/*.feature\" --require-module ts-node/register --require tests/support/env.ts --require \"tests/steps/**/*.ts\" --format json:reports/cucumber_report.json --tags \"@regression\"",
+    "test:smoke": "cross-env cucumber-js \"tests/**/*.feature\" --require-module ts-node/register --require tests/support/env.ts --require \"tests/steps/**/*.ts\" --format json:reports/cucumber_report.json --tags \"@smoke\"",
+    "test:regression": "cross-env cucumber-js \"tests/**/*.feature\" --require-module ts-node/register --require tests/support/env.ts --require \"tests/steps/**/*.ts\" --format json:reports/cucumber_report.json --tags \"@regression\"",
     "report": "node generate-report.js"
   },
   "keywords": [],
