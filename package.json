@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:bdd": "ENV=dev cucumber-js \"tests/**/*.feature\" --require-module ts-node/register --require tests/support/env.ts --require \"tests/steps/**/*.ts\""
+    "test:bdd": "ENV=dev cucumber-js \"tests/**/*.feature\" --require-module ts-node/register --require tests/support/env.ts --require \"tests/steps/**/*.ts\" --format json:reports/cucumber_report.json ",
+    "test:createPost": "ENV=dev cucumber-js tests/posts/createPost.feature --require-module ts-node/register --require tests/support/env.ts --require tests/steps/**/*.ts --format json:reports/createPost.json",
+    "test:getAllPosts": "cross-env cucumber-js tests/posts/getAllPosts.feature --require-module ts-node/register --require tests/support/env.ts --require tests/steps/**/*.ts --format json:reports/getAllPosts.json",
+    "test:smoke": "ENV=dev cucumber-js \"tests/**/*.feature\" --require-module ts-node/register --require tests/support/env.ts --require \"tests/steps/**/*.ts\" --format json:reports/cucumber_report.json --tags \"@smoke\"",
+    "test:regression": "ENV=dev cucumber-js \"tests/**/*.feature\" --require-module ts-node/register --require tests/support/env.ts --require \"tests/steps/**/*.ts\" --format json:reports/cucumber_report.json --tags \"@regression\"",
+    "report": "node generate-report.js"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +18,8 @@
   "devDependencies": {
     "@cucumber/cucumber": "^11.3.0",
     "@playwright/test": "^1.53.1",
+    "cross-env": "^7.0.3",
+    "cucumber-html-reporter": "^7.2.0",
     "dotenv": "^16.5.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"

@@ -1,11 +1,7 @@
 import { When, Then } from "@cucumber/cucumber";
 import { request } from "@playwright/test";
-import {
-  expectStatus,
-  expectIsArray,
-  expectArrayLength,
-  expectObjectHasKeys,
-} from "../../utils/assertions";
+import { expectIsArray, expectArrayLength } from "../../utils/assertions";
+import { setSharedResponse } from "./common.steps";
 
 let response: any;
 let responseBody: any[];
@@ -17,10 +13,7 @@ When("I send a GET request to {string}", async function (path: string) {
 
   response = await apiContext.get(path);
   responseBody = await response.json();
-});
-
-Then("the response status should be {int}", function (statusCode: number) {
-  expectStatus(response, statusCode);
+  setSharedResponse(response);
 });
 
 Then("the response body should be an array", function () {

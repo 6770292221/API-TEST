@@ -1,5 +1,5 @@
 Feature: Get All Posts
-
+@smoke
   Scenario: TC01: should return 200 OK
     When I send a GET request to "/posts"
     Then the response status should be 200
